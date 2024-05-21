@@ -1,20 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import useFonts from "./useFonts";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DrawerNavigation from "./navigation/DrawerNavigation";
 
-export default function App() {
+// Prevent the splash screen from auto-hiding
+SplashScreen.preventAutoHideAsync();
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  const fontsLoaded = useFonts({
+    PaytoneOne: require("./assets/fonts/PaytoneOne-Regular.ttf"),
+    Roboto: require("./assets/fonts/Roboto-Medium.ttf"),
+    RobotoBold: require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          initialRouteName: "Main",
+        }}
+      >
+        <Stack.Screen name="Main" component={DrawerNavigation} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+// const styles = StyleSheet.create({
+//   appContainer: {
+//     // flex: 1,
+//     // paddingVertical: 20,
+//     // paddingHorizontal: 10,
+//     padding: 50,
+//   },
+// });
