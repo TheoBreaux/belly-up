@@ -35,13 +35,13 @@ const BottomNavBar = () => {
         <Text style={styles.label}>Card</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.searchButton}
         onPress={() => navigation.navigate("SearchScreen")}
       >
         <Ionicons name="search-outline" size={24} color="white" />
-        <Text style={[styles.label, { color: "white" }]}>Search</Text>
-      </TouchableOpacity>
+        <Text style={[styles.label, { color: "white" }]}></Text>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.button}

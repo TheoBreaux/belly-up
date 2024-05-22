@@ -7,43 +7,32 @@ import { useNavigation } from "@react-navigation/native";
 
 const NearbyVenues = () => {
   const navigation = useNavigation();
-
-  const renderItem = ({ item: venue }) => {
-    return (
-      <Pressable
-        key={venue.id}
-        style={styles.container}
-        onPress={() => navigation.navigate("VenueScreen", { venue })}
-      >
+  return nearbyVenues.map((venue) => (
+    <Pressable
+      key={venue.id}
+      style={styles.container}
+      onPress={() => navigation.navigate("VenueScreen", { venue })}
+    >
+      <View style={styles.divider}>
         <HorizontalLine />
-        <View style={styles.row}>
-          <Text style={styles.name}>{venue.name}</Text>
-          <StarRatingDisplay
-            rating={venue.rating}
-            color="black"
-            maxStars={5}
-            starSize={15}
-          />
-        </View>
+      </View>
 
-        <Text style={styles.text}>{venue.address}</Text>
-        <Text>
-          {venue.city}, {venue.state} {venue.zip}
-        </Text>
-      </Pressable>
-    );
-  };
+      <View style={styles.row}>
+        <Text style={styles.name}>{venue.name}</Text>
+        <StarRatingDisplay
+          rating={venue.rating}
+          color="black"
+          maxStars={5}
+          starSize={15}
+        />
+      </View>
 
-  return (
-    <>
-      <FlatList
-        data={nearbyVenues}
-        renderItem={renderItem}
-        keyExtractor={(venue) => venue.id.toString()}
-      />
-      <View style={styles.divider} />
-    </>
-  );
+      <Text style={styles.text}>{venue.address}</Text>
+      <Text style={styles.text}>
+        {venue.city}, {venue.state} {venue.zip}
+      </Text>
+    </Pressable>
+  ));
 };
 
 export default NearbyVenues;
@@ -51,6 +40,9 @@ export default NearbyVenues;
 const styles = StyleSheet.create({
   container: {
     marginBottom: 0,
+  },
+  divider: {
+    marginTop: 10,
   },
   row: {
     display: "flex",
@@ -65,11 +57,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontFamily: "Roboto",
-  },
-  divider: {
-    width: "100%",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-    marginTop: 10,
   },
 });

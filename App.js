@@ -8,6 +8,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import ConfirmationPaymentScreen from "./screens/ConfirmationPaymentScreen";
 import QRCodeAndPickUpScreen from "./screens/QRCodeAndPickUpScreen";
 import CardScreen from "./screens/CardScreen";
+import BottomNavBar from "./navigation/BottomNavBar";
+import ProfileScreen from "./screens/ProfileScreen";
+import VenueScreen from "./screens/VenueScreen";
+import TopNav from "./navigation/TopNav";
 
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
@@ -42,6 +46,8 @@ const App = () => {
         <Stack.Screen name="Card" component={CardScreen} />
         <Stack.Screen name="QRCode" component={QRCodeAndPickUpScreen} />
         <Stack.Screen name="Cart" component={ConfirmationPaymentScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="VenueScreen" component={VenueScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

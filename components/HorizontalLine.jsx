@@ -1,14 +1,14 @@
 import { View, StyleSheet } from "react-native";
 
-const HorizontalLine = () => {
-  return <View style={styles.line} />;
+const HorizontalLine = ({ color }) => {
+  const lineColor = color ? color : "rgba(167, 165, 165, 1)"; // Default color
+  return <View style={[styles.line, { borderBottomColor: lineColor }]} />;
 };
 
 const styles = StyleSheet.create({
   line: {
-    borderBottomColor: "rgba(167, 165, 165, 1)", // Change color as needed
-    borderBottomWidth: 1, // Adjust thickness as needed
-    marginTop: 0, // Adjust spacing as needed
+    borderBottomWidth: 1,
+    marginTop: 0,
   },
 });
 

@@ -2,12 +2,15 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import Colors from "../constants/colors";
 import ProfileImage from "../assets/images/theo.jpg";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileIcon = ({ text }) => {
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => console.log("Pressing Me!")}
+      onPress={() => navigation.navigate("ProfileScreen")}
     >
       <View style={styles.iconContainer}>
         <Image source={ProfileImage} style={styles.image} />
