@@ -1,9 +1,13 @@
 import useFonts from "./useFonts";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DrawerNavigation from "./navigation/DrawerNavigation";
+import { View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import ConfirmationPaymentScreen from "./screens/ConfirmationPaymentScreen";
+import QRCodeAndPickUpScreen from "./screens/QRCodeAndPickUpScreen";
+import CardScreen from "./screens/CardScreen";
 
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
@@ -32,22 +36,15 @@ const App = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          initialRouteName: "Main",
         }}
       >
-        <Stack.Screen name="Main" component={DrawerNavigation} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Card" component={CardScreen} />
+        <Stack.Screen name="QRCode" component={QRCodeAndPickUpScreen} />
+        <Stack.Screen name="Cart" component={ConfirmationPaymentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default App;
-
-// const styles = StyleSheet.create({
-//   appContainer: {
-//     // flex: 1,
-//     // paddingVertical: 20,
-//     // paddingHorizontal: 10,
-//     padding: 50,
-//   },
-// });

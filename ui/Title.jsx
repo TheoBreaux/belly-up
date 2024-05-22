@@ -10,8 +10,9 @@ export default Title;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontFamily: "RobotoBold",
     color: "black",
+    marginTop: -10,
   },
 });

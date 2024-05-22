@@ -1,7 +1,16 @@
-import { StyleSheet, Text, View, Pressable, Animated } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Animated,
+  Dimensions,
+} from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Colors from "../constants/colors";
 import HamburgerMenu from "./HamburgerMenu";
+
+const screenHeight = Dimensions.get("window").height;
 
 const HamburgerMenuIcon = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -10,7 +19,7 @@ const HamburgerMenuIcon = () => {
   useEffect(() => {
     Animated.timing(slideAnim, {
       toValue: showMenu ? 0 : -300, // Slide in or out
-      duration: 300, // Animation duration
+      duration: 450, // Animation duration
       useNativeDriver: true,
     }).start();
   }, [showMenu]);
@@ -21,6 +30,19 @@ const HamburgerMenuIcon = () => {
 
   return (
     <>
+      {showMenu && (
+        <Animated.View
+          style={[
+            styles.overlay,
+            {
+              opacity: slideAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.5, 0],
+              }),
+            },
+          ]}
+        />
+      )}
       {showMenu && (
         <Animated.View
           style={[
@@ -53,11 +75,16 @@ const HamburgerMenuIcon = () => {
 export default HamburgerMenuIcon;
 
 const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+    height: screenHeight,
+  },
   menuContainer: {
     position: "absolute",
     top: 0,
     right: 0,
-    zIndex: 100,
+    zIndex: 2,
     width: "250", // Adjust width as necessary
     height: "100%", // Adjust height as necessary
     backgroundColor: "white", // Adjust background color as necessary

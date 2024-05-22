@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-end",
     position: "absolute",
-    top: -30,
+    top: 0,
     right: 0,
     backgroundColor: "white",
     width: 250,
