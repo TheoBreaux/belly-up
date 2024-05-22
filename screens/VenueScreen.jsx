@@ -6,40 +6,44 @@ import Title from "../ui/Title";
 import HorizontalLine from "../components/HorizontalLine";
 import SearchBar from "../ui/SearchBar";
 import VenueMap from "../assets/images/venue-map.jpg";
+import { useNavigation } from "@react-navigation/native";
 
 const VenueScreen = ({ route }) => {
   const { venue } = route.params;
+  const navigation = useNavigation();
 
   return (
     <ScreenWrapper>
-      <Title>{venue.name}</Title>
-      <Text style={styles.text}>{venue.address}</Text>
-      <Text style={styles.text}>
-        {venue.city}, {venue.state} {venue.zip}
-      </Text>
-      <View style={styles.divider}>
-        <HorizontalLine color="black" />
-      </View>
+      <View>
+        <Title>{venue.name}</Title>
+        <Text style={styles.text}>{venue.address}</Text>
+        <Text style={styles.text}>
+          {venue.city}, {venue.state} {venue.zip}
+        </Text>
+        <View style={styles.divider}>
+          <HorizontalLine color="black" />
+        </View>
 
-      <View style={styles.menusContainer}>
-        {venue.menu.map((menu, index) => (
-          <MenuCard key={menu.id} source={menu.menuImg} menu={menu.title} />
-        ))}
-      </View>
+        <View style={styles.menusContainer}>
+          {venue.menu.map((menu, index) => (
+            <MenuCard key={menu.id} source={menu.menuImg} menu={menu.title} />
+          ))}
+        </View>
 
-      <View style={styles.searchBarContainer}>
-        <SearchBar />
-      </View>
+        <View style={styles.searchBarContainer}>
+          <SearchBar />
+        </View>
 
-      <View style={[styles.divider, { marginTop: 10 }]}>
-        <HorizontalLine color="black" />
+        <View style={[styles.divider, { marginTop: 10 }]}>
+          <HorizontalLine color="black" />
+        </View>
       </View>
 
       <View style={{ marginVertical: 10 }}>
         <Title>Venue Map</Title>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("VenueMapScreen")}>
         <Image source={VenueMap} style={styles.image} />
       </TouchableOpacity>
     </ScreenWrapper>

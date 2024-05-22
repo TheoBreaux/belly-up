@@ -12,6 +12,7 @@ import BottomNavBar from "./navigation/BottomNavBar";
 import ProfileScreen from "./screens/ProfileScreen";
 import VenueScreen from "./screens/VenueScreen";
 import TopNav from "./navigation/TopNav";
+import VenueMapScreen from "./screens/VenueMapScreen";
 
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
@@ -48,6 +49,7 @@ const App = () => {
         <Stack.Screen name="Cart" component={ConfirmationPaymentScreen} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="VenueScreen" component={VenueScreen} />
+        <Stack.Screen name="VenueMapScreen" component={VenueMapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
